@@ -1,0 +1,4 @@
+name: 'Plugin'
+version: '1.0'
+main: 'rocks.jaiden.plugin.Plugin'
+api-version: '1.20'

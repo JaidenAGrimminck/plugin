@@ -1,0 +1,1 @@
+mv target/plugin-1.0-SNAPSHOT.jar ../server/plugins/plugin-1.0-SNAPSHOT.jar
