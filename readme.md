@@ -14,6 +14,10 @@ After that, copy the jar file from the target folder to your server's plugins fo
 
 Finally, start your server and connect to it with the robot.
 
+# Robot Code
+
+The corresponding robot code can be found on the "main" branch of https://github.com/JaidenAGrimminck/plugin.
+
 # Usage
 
 To use this plugin, chat "`connect`" to connect to the robot.
