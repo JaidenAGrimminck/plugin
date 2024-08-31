@@ -1,6 +1,6 @@
-package rocks.jaiden.plugin.game.player;
+package rocks.jaiden.old.game.player;
 
-import rocks.jaiden.plugin.game.items.GameItem;
+import rocks.jaiden.old.game.items.GameItem;
 
 import java.util.ArrayList;
 

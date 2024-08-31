@@ -1,6 +1,6 @@
-package rocks.jaiden.plugin.game.player;
+package rocks.jaiden.old.game.player;
 
-import rocks.jaiden.plugin.management.ServerProfile;
+import rocks.jaiden.old.management.ServerProfile;
 
 public class GameProfile extends Person {
     private ServerProfile parent;

@@ -1,4 +1,4 @@
-package rocks.jaiden.plugin.game.player;
+package rocks.jaiden.old.game.player;
 
 public class NPC extends Person {
     private String background;

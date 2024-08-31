@@ -1,6 +1,6 @@
-package rocks.jaiden.plugin.game.regions;
+package rocks.jaiden.old.game.regions;
 
-import rocks.jaiden.plugin.game.economy.Economy;
+import rocks.jaiden.old.game.economy.Economy;
 
 public class Nation {
     private String name;

@@ -1,13 +1,11 @@
-package rocks.jaiden.plugin.game.items;
+package rocks.jaiden.old.game.items;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ItemType;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class GameItem implements Listener {
@@ -51,8 +49,8 @@ public class GameItem implements Listener {
 
     @EventHandler
     public void onItemDespawn(ItemDespawnEvent event) {
-        if (event) {
-            event.setCancelled(true);
-        }
+//        if (event) {
+//            event.setCancelled(true);
+//        }
     }
 }

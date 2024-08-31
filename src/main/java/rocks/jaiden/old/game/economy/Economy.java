@@ -1,6 +1,6 @@
-package rocks.jaiden.plugin.game.economy;
+package rocks.jaiden.old.game.economy;
 
-import rocks.jaiden.plugin.game.items.GameItem;
+import rocks.jaiden.old.game.items.GameItem;
 
 public class Economy {
     //the backing of the economy, i.e. what you can use the currency to exchange for
