@@ -14,7 +14,9 @@ import java.util.UUID;
 
 public class PlayerRobotMonitor implements Listener {
 
-    WSClient client;
+    public static PlayerRobotMonitor instance;
+
+    public WSClient client;
     public static UUID playerUUID;
 
     private Timer updateTimer;
@@ -25,6 +27,11 @@ public class PlayerRobotMonitor implements Listener {
 
     private long lastUpdate = 0;
 
+    public PlayerRobotMonitor() {
+        super();
+        instance = this;
+    }
+
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         String message = event.getMessage();
@@ -33,14 +40,14 @@ public class PlayerRobotMonitor implements Listener {
             if (playerUUID == null) {
                 playerUUID = event.getPlayer().getUniqueId();
 
-                String ip = "localhost";
+                String ip = "192.168.43.1";
 
                 if (message.split(" ").length > 1) {
                     String arg = message.split(" ")[1];
                     ip = arg;
                 }
 
-                String uri = "ws://192.168.43.1:23015";
+                String uri = "ws://" + ip + ":23015";
                 event.getPlayer().sendMessage("[server] connecting to " + uri);
 
                 client = new WSClient();
@@ -75,8 +82,10 @@ public class PlayerRobotMonitor implements Listener {
                                 thisListener.sendLocation(
                                         location.getX(), location.getZ(), System.currentTimeMillis(),
                                         lastX, lastY, lastUpdate,
-                                        location.getYaw()
+                                        player.getLocation().getYaw()
                                 );
+
+                                //player.sendMessage("yaw:" + player.getLocation().getYaw());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

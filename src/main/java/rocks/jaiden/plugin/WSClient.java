@@ -4,18 +4,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
 import okio.ByteString;
-import org.bukkit.Bukkit;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class WSClient {
 
@@ -64,7 +55,7 @@ public class WSClient {
         socket.close(1000, "Goodbye!");
     }
 
-    public void sendLocation(double x, double y, long timestamp, double lastX, double lastY, long lastTimestamp, double rot) throws IOException {
+    public void sendLocation(double x, double y, long timestamp, double lastX, double lastY, long lastTimestamp, float rotflt) throws IOException {
         byte[] byteList = new byte[4 + Double.BYTES * 3];
         //first four bytes is 0x01, 0x00, 0x00, 0x00
         System.arraycopy(new byte[]{0x01, 0x00, 0x00, 0x00}, 0, byteList, 0, 4);
@@ -74,6 +65,9 @@ public class WSClient {
         double xMotion = (x - lastX) / -timeDiff;
         double yMotion = (y - lastY) / timeDiff;
 
+        //convert float to double
+        double rot = (double) rotflt;
+
 //        Bukkit.getPlayer(PlayerRobotMonitor.playerUUID).sendMessage("X: " + xMotion + ", Y: " + yMotion + ", Time: " + timeDiff);
 //        Bukkit.getPlayer(PlayerRobotMonitor.playerUUID).sendMessage("NOW (" + x + ", " + y + "), Time: " + timestamp);
 //        Bukkit.getPlayer(PlayerRobotMonitor.playerUUID).sendMessage("LAST (" + lastX + ", " + lastY + "), Time: " + lastTimestamp);
@@ -81,10 +75,10 @@ public class WSClient {
         byte[] xBytes = new byte[Double.BYTES];
         ByteBuffer.wrap(xBytes).putDouble(xMotion);
         byte[] yBytes = new byte[Double.BYTES];
-        ByteBuffer.wrap(yBytes).putDouble(yMotion);
+        ByteBuffer.wrap(yBytes).putDouble(-yMotion);
 
         byte[] rotation = new byte[Double.BYTES];
-        ByteBuffer.wrap(rotation).putDouble(rot);
+        ByteBuffer.wrap(rotation).putDouble(180 - rot - 180);
 
         System.arraycopy(xBytes, 0, byteList, 4, Double.BYTES);
         System.arraycopy(yBytes, 0, byteList, 4 + Double.BYTES, Double.BYTES);

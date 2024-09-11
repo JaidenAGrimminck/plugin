@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Plugin extends JavaPlugin {
     @Override
     public void onEnable() {
-        getLogger().info("Hello world!");
+        getLogger().info("Plugin loaded!");
 
         //register events
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
@@ -14,6 +14,8 @@ public class Plugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info("Goodbye world!");
+        PlayerRobotMonitor.instance.client.close();
+
+        getLogger().info("Shutting down!");
     }
 }
